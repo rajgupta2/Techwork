@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Trending_Projects";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+
+@using Techwork.Models
+@model IEnumerable<PostedProject>
+<div class="row mr-0">
+    <div class="col-sm-12">
+        <h2 class="text-center text-success">Trending Projects</h2>
+        <hr class="w-25 bg-dark" />
+    </div>
+</div>
+@{
+        int i = 1;
+        foreach (PostedProject d in Model)
+        {
+            if (i % 4 == 0 || i == 1)
+            {
+                @:<div class="card-deck mr-0 pb-5" style="padding-left:10%;padding-right:10%;">
+                }
+                <div class="card col-sm-4 p-3 bg-light">
+                    <b class="text-capitalize h4 text-success">@d.ProjectTitle</b><hr class="bg-info" />
+                    <div class="card-body p-1">
+                        <p class="text-justify">
+                            <b>Description-</b>
+                            <br />@d.DescriptionOfProject
+                        </p>
+                        <small><i class="bi bi-clock-history pr-2 text-success"></i>  <b>Posted on-</b> @d.Posted_On</small><br />
+                        <small><i class="bi bi-clock-history pr-2 text-success"></i>  <b> Deadline:</b> @d.Deadline</small>
+                    </div>
+                    <hr class="bg-primary" />
+                    <a class="text-decoration-none" href="/Home/Sign_Developer">Request for Project</a>
+                </div>
+                i++;
+
+                if (i % 4 == 0 || i == @Model.Count() + 1)
+                {
+                @:</div>
+            }
+        }
+    }

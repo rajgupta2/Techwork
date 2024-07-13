@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/Developercommon.cshtml";
+}
+@using Techwork.Models
+@model Developer
+<script>
+    $(document).ready(function () {
+        $("#highestQualification").val("@Model.Highest_Qualification");
+        $("#yearsOfExperience").val("@Model.Experience_Year");
+
+        $(".custom-file-input").change(function () {
+            var filename = $(this).val().split("\\").pop();
+            $(".custom-file-label").html(filename);
+        });
+    });
+</script>
+<style>
+    .pink {
+        color: #2fb50b;
+        line-height: 2;
+    }
+    .myprof {
+        background-image: linear-gradient(#e1a5a5,#c3c2d735,#9a54bb72);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="row mr-0 myprof" >
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 my-5 px-0 pt-2 hm" style="box-shadow:0px 0px 12px blue;background:#483838;">
+        <h1 class="text-center text-primary">My Profile</h1>
+        <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+        <form action="/Developer/MyProfile" method="post" enctype="multipart/form-data">
+            <div class="row mx-0 pt-2">
+                <div class="col-sm-5 mt-5" align="center">
+                    <img src="~/Content/DeveloperPics/@Model.Photo" id="photo" align="middle" style="height:150px;width:150px;border-radius:50%;"><br /><br />
+                    <div class="custom-file" align="left">
+                        <label class="custom-file-label ">
+                            Change Photo:
+                        </label>
+                        <input type="file" name="Photo" id="Photo" class="custom-file-input" />
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <span class="pink">Email:</span>
+                    <input type="email" readonly value="@Model.Email" class="form-control" style="cursor:not-allowed;" />
+                    <span class="pink">Name:</span>
+                    <input type="text" id="name" name="Name" value="@Model.Name" class="form-control" />
+                    <span class="pink">Gender:</span>
+
+                    <div class="form-control">
+                        @{
+                            if (Model.Gender == "Male")
+                            {
+                                <input type="radio" name="Gender" value="Male" checked /><span>Male</span>
+                                <input type="radio" name="Gender" value="Female" /><span>Female</span>
+                            }
+                            else
+                            {
+                                <input type="radio" name="Gender" value="Male" /><span>Male</span>
+                                <input type="radio" name="Gender" value="Female" checked /><span>Female</span>
+                            }
+                        }
+                    </div>
+                    <span class="pink">Highest Qualification:</span>
+                    <select class="form-control" id="highestQualification" name="Highest_Qualification">
+                        <option value="">Select highest Qualification</option>
+                        <option>BCA</option>
+                        <option>MCA</option>
+                        <option>BSC</option>
+                        <option>B.Tech</option>
+                        <option>M.Tech</option>
+                        <option>CSC</option>
+                        <option>Diploma</option>
+                        <option>Others</option>
+                    </select>
+                    <span class="pink">Years Of Experience:</span>
+                    <select class="form-control" id="yearsOfExperience" name="Experience_Year">
+                        <option value="">Select Years Of Experience</option>
+                        @{
+                            for (int i = 0; i < 15; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        }
+                    </select>
+                    <span class="pink">Phone:</span>
+                    <input class="form-control" id="phone" name="Phone" placeholder="Phone" value="@Model.Phone">
+                    <span class="pink">Address:</span>
+                    <textarea style="resize:none;height:90px;" id="address" placeholder="Address" class="form-control" name="Address"> @Model.Address</textarea>
+                    <span class="pink">Skills</span>
+                    <textarea class="form-control" name="Skills" id="skills"
+                              style="resize: none;height:90px;"> @Model.Skills</textarea><br />
+                    <button class="btn btn-success btn-block" type="submit" id="updateChanges">Update Changes</button><br />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-3"></div>
+</div>

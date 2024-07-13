@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Sign_Client";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+@*Sign Up for Client*@
+<style>
+
+    .back{
+        background:#000000;
+    }
+</style>
+<script src="~/Content/JS/my.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div class="row m-0 py-5 back">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 " style="box-shadow: 0px 0px 10px green;">
+        <form action="/Home/Sign_Client" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <br /><br />
+                    <h1 class="text-center">Client's Sign up</h1>
+                    <hr class="bg-dark" />
+                    <p id="presponse" class="bg-warning  text-left h4 "
+                       style="min-height:40px;width:100%;display:none;">@ViewBag.msg</p>
+                </div>
+
+            </div>
+            <!--1st row-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" id="name" type="text" name="Name" placeholder="Enter Name" />
+                </div>
+                <div class="col-sm-6">
+                    <span class="form-control ">
+                        Gender
+                        <input type="radio" checked value="Male" name="Gender" />Male
+                        <input type="radio" value="Female" name="Gender" />Female
+                    </span>
+                </div>
+            </div>
+            <!--2nd row-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" id="nameOfBusiness" type="text" name="Business_Name" placeholder="Name Of Business" />
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" name="Phone" id="phone" placeholder="Phone">
+                </div>
+            </div>
+            <!--3rd-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" type="email" id="email" name="Email" placeholder="EmailId" />
+                </div>
+                <div class="col-sm-6">
+                    <textarea style="resize:none;height:60px;" id="address" placeholder="Enter Your Address" name="Address"
+                              class="form-control"></textarea>
+                </div>
+            </div>
+            <!--4-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="password" name="Password" id="password" placeholder="Password"
+                           class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="password" name="ConfirmPassword" id="confirmPassword" placeholder="Confirm Password"
+                           class="form-control" />
+                </div>
+
+
+            </div>
+            <!--5-->
+            <div class="row pt-4">
+                <div class="col-sm-6">
+                    <!-- div to show reCAPTCHA -->
+                    <div class="g-recaptcha"
+                         data-sitekey="6LdGL7EhAAAAALpRSGmgSC7ZtLZBgd34qi5bMQak">
+                    </div>
+                </div>
+            </div>
+            <!--6-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="checkbox" id="check" class="form-check-label mr-2" />
+                    <span class="text-white">
+                        Agree <a href="#" class="text-decoration-none text-primary">Terms and Conditons</a> of Techwork
+
+                    </span>
+                </div>
+            </div>
+            <!--7-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="submit" id="register" class="btn btn-success mb-2 btn-block form-control" value="Register Now" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="reset" name="Reset" class="btn mb-5 btn-warning btn-block form-control" />
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "SubmittedProjectsByDeveloper";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<UploadProject>
+<div class="row mr-0">
+    <div class="col-sm-12 pr-0" style="min-height:610px;">
+        <h2 class="text-success text-center">My Work Submitted By Developer</h2>
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Uploaded On</th>
+                    <th>Project Title</th>
+                    <th>Description</th>
+                    <th>File</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (UploadProject d in Model)
+                    {
+                        <tr>
+                            <td>@d.Uploaded_On</td>
+                            <td>@d.Title</td>
+                            <td class="text-justify">@d.Description</td>
+                            <td><a class="text-decoration-none" href="~/Content/DeveloperUploadedProject/@d.FileName" target="_blank" download="@d.FileName">Download</a> </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+

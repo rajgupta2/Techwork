@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<Notification>
+    @ViewBag.msg;
+<script>
+    function blink() {
+        $(".blink").fadeToggle(1500);
+        setTimeout(blink(), 1500);
+    }
+    $(document).ready(function () {
+        $(".card").mouseenter(function () {
+            $(this).css("background","pink");
+        });
+        $(".card").mouseleave(function () {
+            $(this).css("background", "white");
+        });
+    });
+    //To stop blinking of btn when
+    var v = $(".navbar-collapse");
+    if (v) {
+        $(".blink").fadeIn(1500);
+    }
+</script>
+<style>
+    .carousel-inner {
+        z-index: -1;
+        opacity: 0.8;
+        }
+
+    .card-body {
+        background: aliceblue;
+    }
+
+</style>
+<!--Notification-->
+<div class="row mr-0" id="alert">
+    <div class="col-sm-12 bg-light">
+        <marquee class="text-danger" >
+            @{
+                if (Model != null)
+                {
+                    foreach (Notification n in Model)
+                    {
+                        <span class="mx-5">
+                            <img src="~/Content/images/alert.gif" height="55px"/>
+                            @n.Message
+                        </span>
+                    }
+                 }
+             }
+
+        </marquee>
+
+    </div>
+</div>
+
+<!--Slider-->
+<div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade " data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="2000">
+            <img src="~/Content/images/img1.jpeg" class="d-block w-100" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="~/Content/images/img3.jpeg" class="d-block w-100" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="~/Content/images/img4.jpeg" class="d-block w-100" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="~/Content/images/img5.jpeg" class="d-block w-100" />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="~/Content/images/img6.jpg" class="d-block w-100" />
+        </div>
+    </div>
+</div>
+<!--Slider Ending-->
+<!--SliderContent-->
+<div class="pl-3" id="sliderContent">
+    <h1>Techwork</h1>
+    <p>
+        Trust of millions of people
+
+    </p>
+    <a class="btn btn-lg blink btn-success" href="/Home/Sign_Developer">
+      Search a Project?
+    </a>
+    <a class="btn btn-lg blink btn-dark" href="/Home/Sign_Client">
+        Hire Developer
+    </a>
+</div>
+<!--SliderContentEnding-->
+@*paragraph Content*@
+<div class="p-5 text-justify" >
+    <p style="line-height:1.8;font-size:18px;">
+        <span style="font-size:30px;" class="text-success">Techwork</span> is an online platform for working for yourself,as opposed to working for someone else.
+        Freelancers are self-employed professionals who work on a project-by-project basis.
+        With help of this web portal bidders can easily find best person for their work.This portal will
+        used to fund work from anywhere This portal will help to work seeker to find work of their desire skills
+        like developments,content writing,etc. With this portal you can freelance from any corner of the world.<br />
+        <!--Who you are?-->
+        Techwork is a free and open source website where you can join people across the world and can earn money
+        and work from home at their free time.
+        Techwork join various people across the world and made project easily available to on the chioce of client.
+        We make our services more special by giving him a lot of time in their projects and submit it at given time and
+        availbale for 24x7 hour support.
+    </p>
+</div>
+@*About us*@
+<div class="p-5 text-justify row mr-0 about pt-5 bg-secondary" id="aboutus" >
+    <div class="col-sm-6 p-5">
+        <h2 class="text-center">About Us</h2>
+        <hr width="20%" noshade />
+        <p style="line-height:1.8;font-size:18px;">
+            <span style="font-size:30px;" class="text-success">Techwork</span> is a hardwork of Techwork's Team
+            as they workhard in making its growth and success.This is not a company but a love of each
+            employee as they give their best in making Techwork.
+
+        </p>
+    </div>
+    <div class="col-sm-6">
+        <img src="~/Content/images/aboutus.jpg" style="max-width:100%" />
+    </div>
+</div>
+@*Services*@
+<div class="row mr-0 mt-3">
+    <div class="col-sm-12">
+        <h2 class="text-center">Services</h2>
+        <hr width="15%" noshade />
+    </div>
+</div>
+<div class="card-deck mr-0 pb-5" style="padding-left:10%;padding-right:10%;">
+    <div class="card col-sm-4 p-0">
+        <img src="~/Content/images/logo.jpg" alt="Logo Design" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Logo Design</h5>
+            <p class="card-text">We design logo for the brand, company, business, startup,websites and so on.</p>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0">
+        <img src="~/Content/images/frontend.jpg" alt="Frontend Developer" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Frontend Developer</h5>
+            <p class="card-text">
+                We have design many websites of state government, central government, national
+                compnay ,international company and so on.
+            </p>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0 ">
+        <img src="~/Content/images/backend.jpg" alt="Backend Developer" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Backend Developer</h5>
+            <p class="card-text"> We have worked on many small as well as big projects and have a experience of 15 years.</p>
+        </div>
+    </div>
+</div>
+<div class="card-deck mr-0 pb-5" style="padding-left:10%;padding-right:10%;">
+    <div class="card col-sm-4 p-0">
+        <img src="~/Content/images/cloud.jpg" alt="Cloud Engineer" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Cloud Engineer</h5>
+            <p class="card-text">Our teams have many best cloud engineer who are always ready to provide customer support.</p>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0">
+        <img src="~/Content/images/cloud.jpg" alt="Software Engineer" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Software Engineer</h5>
+            <p class="card-text">
+                Our teams have many best software engineer who are always ready to provide customer support.
+            </p>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0">
+        <img src="~/Content/images/technical.jpg" alt="Technical Support" />
+        <div class="card-body">
+            <h5 class="card-title text-center">Technical Support</h5>
+            <p class="card-text"> Our teams have many best technical supporter who are always ready to provide customer support.</p>
+        </div>
+    </div>
+</div>

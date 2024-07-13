@@ -1,0 +1,11 @@
+bin/*
+App_Data/*
+Content/DeveloperPics/*
+DeveloperUploadedProject/*
+PostedProject/*
+Models/*
+obj/*
+Properties/*
+web.config
+Web.Debug.config
+Web.Release.config

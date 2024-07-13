@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+<style>
+    .log {
+        padding-left: 7%;
+        padding-right: 7%;
+        background-image: linear-gradient(150deg,#0026ff,#9630d2,#00ffff);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .form {
+        background-image: linear-gradient(250deg,#216e38,#d73bc9,#6e3ece);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        //validation
+        $("#login").click(function () {
+            var userType, userId, password, result = true;
+            userType = $("#userType").val();
+            userId = $("#userId").val().trim();
+            password = $("#password").val().trim();
+            $(".err").remove();
+            if (userType.length == 0) {
+                result = false;
+                $("#userType").after("<span class='text-danger err'>Please Select one</span>");
+            }
+            if (userId.length == 0) {
+                result = false;
+                $("#userId").after("<span class='text-danger err'>Enter Your Id</span>");
+            }
+            if (password.length == 0) {
+                result = false;
+                $("#password").after("<span class='text-danger err'>Enter password.</span>");
+            }
+            return result;
+        });
+    });
+</script>
+<div class="row log mr-0">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 form my-5">
+        <form action="/Home/Login" method="post" class="pt-3">
+            <div align="center">
+                <img src="~/Content/images/mylogo2.png" style="max-height:60px;" />
+            </div>
+            <hr class="bg-white" size="3" />
+            <span id="presponse" class=" text-center bg-warning px-1 text-center h4"
+                  style="min-height:40px;width:100%;display:none;">@ViewBag.msg</span>
+                <select class="form-control" id="userType" name="UserType">
+                    <option value="">User Type</option>
+                    <option>Developer</option>
+                    <option>Client</option>
+                </select>
+                <input class="form-control" id="userId" type="email" name="UserId" placeholder="Email" />
+                <input class="form-control" type="password" id="password" name="Pass" placeholder="Password" /><br />
+                <input class="btn btn-block btn-success" type="submit" id="login" value="Login" /><br />
+
+                <h6 class="text-right">
+                    @*Modal button*@
+                    <a role="button" data-toggle="modal" data-target="#forgot">
+                        Forgot Password?
+                    </a>
+                </h6>
+                <h6 class="text-dark d-inline">
+                    Have no Account?
+                </h6>
+                <a class=" dropdown-toggle p-2 text-dark" data-toggle="dropdown"
+                   href="#" style="text-decoration:none;">Sign Up</a>
+                <div class="dropdown-menu m-0">
+                    <a class="dropdown-item" href="/Home/Sign_Developer">Developer</a>
+                    <a class="dropdown-item" href="/Home/Sign_Client">Client</a>
+                </div><br /><br />
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    @*Forget Password Modal*@
+    <!-- Modal -->
+    <div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Forgot Password?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="email" name="ForgotId" id="ForgotId" class="form-control" placeholder="Registerd Email" /><br />
+                    <select class="form-control" name="futype" id="futype">
+                        <option value="">User Type</option>
+                        <option>Developer</option>
+                        <option>Client</option>
+                    </select>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn  btn-lg btn-success"  id="btnsend" >Send OTP</button>
+                    <button type="button" class="btn  btn-lg btn-danger w-25" id="btnclose" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Verify OTP MODAL-->
+    <div class="modal fade" id="verifyOTP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Entered OTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @*Modal Body*@
+                <div class="modal-body">
+                    <input type="number" name="OTP" id="OTP" class="form-control" placeholder="Enter OTP" /><br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn  btn-lg btn-success" id="btnverify">Verify OTP</button>
+                    <button type="button" class="btn  btn-lg btn-danger w-25" id="btnclose" data-dismiss="modal" data-toggle="modal" data-target="#verifyOTP">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--New Pass MODAL-->
+
+    <div class="modal fade" id="newpassmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create New Password.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @*Modal Body*@
+            <div class="modal-body">
+                <input type="password" name="npass" id="npass" class="form-control" placeholder="Enter New Password" /><br />
+                <input type="password" name="cpass" id="cpass" class="form-control" placeholder="Confirm New Password" /><br />
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn  btn-lg btn-success" id="btnchangepass">Change Password</button>
+                    <button type="button" class="btn  btn-lg btn-danger w-25" id="btnclose" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function () {
+        //To Send OTP for Forgot Password
+        $("#btnsend").click(function () {
+            var uid = $("#ForgotId").val().trim();
+            var utype = $("#futype").val().trim();  
+            if (uid.length == 0) {
+                alert("Enter Registerd Email");
+                return false;
+            }
+            if (utype.length == 0) {
+                alert("Please select user type");
+                return false;
+            }
+            var obj = { userid: uid, usertype: utype };
+            $.ajax({
+                type: "POST",
+                url: "/Home/SendOTP",
+                data: obj,
+                dataType: "json",
+                success: function (message) {
+                    if (message == "SUCCESS") {
+                            $("#forgot").modal("hide");
+                            $("#verifyOTP").modal("show");
+                    }
+                    else {
+                        alert("Invalid emailid or usertype.please enter valid data");
+                    }
+                }
+            });
+        });
+        //TO verify OTP for forgat password
+        $("#btnverify").click(function () {
+            var uid = $("#ForgotId").val().trim();
+            var code = $("#OTP").val().trim();
+            if (code.length == 0) {
+                alert("Enter OTP");
+                return false;
+            }
+            var obj = { userid: uid, OTP: code };
+            $.ajax({
+                type: "POST",
+                url: "/Home/verifyOTP",
+                data: obj,
+                dataType: "json",
+                success: function (message) {
+                    if (message == "SUCCESS") {
+                        $("#verifyOTP").modal("hide");
+                        $("#newpassmodal").modal("show");
+                    }
+                    else {
+                        alert("Invalid OTP.Please enter a valid OTP");
+                    }
+                }
+            });
+        });
+        //To set new password(change password)
+        $("#btnchangepass").click(function () {
+            var uid = $("#ForgotId").val().trim();
+            var npass = $("#npass").val().trim();
+            var cpass = $("#cpass").val().trim();
+            if (npass.length == 0) {
+                alert("New Password can't be empty");
+                return false;
+            } else (npass.length <8){
+                alert("New Password can't less than 8 characters");
+                return false;
+            }
+            if (npass != cpass) {
+                alert("new password and confirm password should be same");
+                return false;
+            }
+            var obj = { userid: uid, newpass: npass, confpass: cpass };
+            $.ajax({
+                type: "POST",
+                url: "/Home/changepass",
+                data: obj,
+                dataType: "json",
+                success: function (message) {
+                    if (message == "SUCCESS") {
+                        alert("Your password updated successfully");
+                        $("#newpassmodal").modal("hide");
+                    } else {
+                        alert("Sorry! Due to some twchnical issue we are unable to create your new password");
+                    }
+                }
+            });
+        });
+    });
+</script>

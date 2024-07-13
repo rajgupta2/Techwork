@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model Client_Table
+<style>
+    .pink {
+        color: #2fb50b;
+        line-height: 2;
+    }
+</style>
+<div class="row mr-0">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 bg-dark px-0" style="box-shadow: 16px 8px 8px;">
+        <h1 style="text-align:center;" class="bg-success">My Profile</h1>
+        <form action="/Client/MyProfile" method="post">
+            <div class="row mx-0 pt-2 px-3">
+                <div class="col-sm-12">
+                    <span class="pink">Email:</span>
+                    <input type="email" readonly value="@Model.Email" class="form-control" style="cursor:not-allowed;" />
+                    <span class="pink">Name:</span>
+                    <input type="text" id="name" value="@Model.Name" class="form-control" />
+                    <span class="pink">Gender:</span>
+
+                    <div class="form-control">
+                        @{
+                            if (Model.Gender == "Male")
+                            {
+                                <input type="radio" name="gender" value="Male" checked /><span>Male</span>
+                                <input type="radio" name="gender" value="Female" /><span>Female</span>
+                            }
+                            else
+                            {
+                                <input type="radio" name="gender" value="Male" /><span>Male</span>
+                                <input type="radio" name="gender" value="Female" checked /><span>Female</span>
+                            }
+                        }
+                    </div>
+                    <span class="pink">Phone:</span>
+                    <input class="form-control" id="phone" name="Phone" placeholder="Phone" value="@Model.Phone">
+                    <span class="pink">Address:</span>
+                    <textarea style="resize:none;height:90px;" id="address" placeholder="Address" class="form-control"> @Model.Address</textarea><br />
+                    <button class="btn btn-success btn-block" type="submit" id="updateChanges">Update Changes</button><br />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-3"></div>
+</div>

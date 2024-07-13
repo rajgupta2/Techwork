@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "AddNotification";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+<script>
+    $(document).ready(function(){
+        $("#save").click(function () {
+            var result = true;
+            var notification = $("#notification").val().trim();
+            $(".err").remove();
+            if (notification.length == 0) {
+                result = false;
+                $("#notification").after("<span class='text-danger err'>Type your notification.</span>")
+            }
+            return result;
+        });
+    });
+</script>
+<div class="row mr-0 py-5" style="background:black;min-height:610px;">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 my-5 py-5" style="box-shadow:0px 0px 16px blue;">
+        <form action="/Client/AddNotification" method="post">
+            <h2 class="text-center text-success">Add Notification</h2>
+            <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+            <textarea class="form-control" rows="5" id="notification" name="notification" placeholder="Type your notification here...." style="resize:none;"></textarea><br />
+            <button id="save" class=" btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+

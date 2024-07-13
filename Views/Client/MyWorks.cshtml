@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "MyWorks";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<PostedProject>
+
+<div class="row mr-0">
+    <div class="col-sm-12 pr-0" style="min-height:610px;">
+        <h1 class="text-success text-center">My Posted Work</h1>
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Posted On</th>
+                    <th>Project Title</th>
+                    <th>Description</th>
+                    <th>Maximum Cost</th>
+                    <th>Deadline</th>
+                    <th>Attachment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (PostedProject d in Model)
+                    {
+                        <tr>
+                            <td>@d.Posted_On</td>
+                            <td>@d.ProjectTitle</td>
+                            <td class="text-justify">@d.DescriptionOfProject</td>
+                            <td>@d.MaximumCost</td>
+                            <td>@d.Deadline</td>
+                            <td><a class="text-decoration-none" href="~/Content/PostedProject/@d.Attachment" target="_blank" download="@d.Attachment">Download</a> </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

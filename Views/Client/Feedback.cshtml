@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $("#saveFeedback").click(function () {
+            var title = $("#FeedbackTitle").val().trim();
+            var description = $("#Description").val().trim();
+            var result = true;
+            $(".err").remove();
+                if (title.length == 0) {
+                    result = false;
+                    $("#FeedbackTitle").after("<span class='text-warning err'>Enter Title</span>");
+                } else if (title.length < 12) {
+                    result = false;
+                    $("#FeedbackTitle").after("<span class='text-warning err'>Describe more about Title </span>");
+                }
+                if (description.length == 0) {
+                    result = false;
+                    $("#Description").after("<span class='text-warning err'>Enter about project</span>");
+                } else if (description.length < 50) {
+                    result = false;
+                    $("#Description").after("<span class='text-warning err'>Write more about project.</span>");
+            }
+            return result;
+        });
+    });
+</script>
+<div class="row mr-0 py-5" style="background:black;color:#5659a4;min-height:610px;">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 pb-5 ml-3 pt-5" style="box-shadow:0px 0px 12px blue;">
+        <form action="/Client/Feedback" method="post">
+            <h1 class="text-success" style="text-align:center;">Feedback</h1>
+            <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+            <h4>Give your valuable feedback</h4>
+            <input type="text" name="FeedbackTitle" id="FeedbackTitle" class="form-control" placeholder="Title/Topic" />
+            <br />
+            <textarea class="form-control" id="Description" name="Description" placeholder="Write your valuable feedback here...." rows="6" style="resize:none;"></textarea><br />
+            <button class="btn btn-block btn-success" type="submit" id="saveFeedback">Save Feedback</button>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+
+</div>
+
+
+
+

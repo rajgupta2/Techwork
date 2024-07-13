@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "ManageNotification";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model  IEnumerable<Notification>
+<div class=" row mr-0"style="min-height:610px;">
+    <div class="col-sm-12">
+        <h1 class="text-success text-center">Manage News and Update</h1>
+        <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+        <table class="table table-hover  table-bordered text-center">
+            <thead>
+                <tr class="text-dark table-info">
+                    <th>Notification ID</th>
+                    <th>Posted Date</th>
+                    <th>Message</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (Notification e in Model)
+                    {
+                        <tr>
+                            <td>@e.NotificationsId</td>
+                            <td>@e.Notification_Date</td>
+                            <td>@e.Message</td>
+                            <td>@Html.ActionLink("Update", "UpdateNotification", new { @id = e.NotificationsId }, new { @class = "btn btn-block btn-success" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteNotification", new { @id = e.NotificationsId }, new { @class = "btn btn-block btn-dark" })</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    </div>
+

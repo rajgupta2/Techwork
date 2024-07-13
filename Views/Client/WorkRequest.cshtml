@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "WorkRequest";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<RequestedProject>
+
+<div class="row mr-0">
+    <div class="col-sm-12 pr-0" style="min-height:610px;">
+        <h1 class="text-center text-success">Requested Work</h1>
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Requested On</th>
+                    <th>Requested By</th>
+                    <th>Subject</th>
+                    <th>Amount</th>
+                    <th>Submission Date</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach(RequestedProject d in Model)
+                    {
+                                <tr>
+                                    <td>@d.Requested_On</td>
+                                    <td>@d.RequestedBy</td>
+                                    <td>@d.Subject</td>
+                                    <td>@d.Amount</td>
+                                    <td>@d.ExpectedSubmissionDate</td>
+                                    <td class="text-justify">@d.Remark</td>
+                                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

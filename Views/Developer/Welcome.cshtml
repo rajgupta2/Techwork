@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/Developercommon.cshtml";
+}
+<style>
+    #DashBoard {
+        background-image: linear-gradient(#534c91,#5892ac,#4a4578);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .dash a{
+        margin:44px;
+        min-height: 200px;
+        background-color: rgb(12,41,121);
+        color: white;
+        padding-top: 48px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .dash a:hover{
+        color:white;
+        background-color:rgb(0,110,225);
+    }
+    .row {
+        padding-left: 7%;
+    }
+</style>
+<center id="DashBoard">
+    <div class="row dash mr-0">
+        <a href="/Developer/MyProfile" class="col-sm-3"><i class="bi bi-house h1"></i><div class="h5">My Profile</div></a>
+        <a href="/Developer/SearchProjects" class="col-sm-3"><i class="bi bi-search h1"></i><div class="h5">Search PROJECTS</div></a>
+        <a href="/Developer/MyProjects" class="col-sm-3"><i class="bi bi-bag h1"></i><div class="h5">My PROJECTS</div></a>
+        <a href="/Developer/UploadProject" class="col-sm-3">
+            <i class="bi bi-box-arrow-up h1"></i><div class="h5">Upload PROJECTS</div>
+        </a>
+        <a href="/Developer/EnquiryManagement" class="col-sm-3"><i class="bi bi-question-circle h1"></i><div class="h5">Enquiry Management</div></a>
+        <a href="/Developer/ViewFeedback" class="col-sm-3"><i class="bi bi-eye h1"></i><div class="h5">View Feedback</div></a>
+        <a href="/Developer/ChangePassword" class="col-sm-3"><i class="bi bi-key h1"></i><div class="h5">Change Password</div></a>
+        <a href="/Developer/LogOut" class="col-sm-3"><i class="bi bi-box-arrow-in-right h1"></i><div class="h5">Logout</div></a>
+    </div>
+</center>

@@ -1,0 +1,257 @@
+﻿@{
+    ViewBag.Title = "Sign_Up";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+@*Sign Up for Developer*@
+<script src="https://www.google.com/recaptcha/api.js" async></script>
+<script>
+    jQuery(document).ready(function () {
+        //for button register making it disbled
+        var check = $("#check").prop("checked");
+        if (check == 0) {
+            $("#register").prop("disabled", true).css("cursor", "not-allowed");
+        }
+        //effect of button on selection of check box
+        $("#check").change(function () {
+            var check = $("#check").prop("checked");
+            if (check == 0) {
+                $("#register").prop("disabled", true).css("cursor", "not-allowed");
+            }
+            else {
+                $("#register").prop("disabled", false).css("cursor","pointer");
+            }
+        });
+
+        //Validatoion
+        $("#register").click(function () {
+            var name,phone, address, password, confirmPassword, result = true;
+            name = $("#name").val().trim();
+            phone = $("#phone").val().trim();
+            email = $("#email").val().trim();
+            address = $("#address").val().trim();
+            password = $("#password").val().trim();
+            confirmPassword = $("#confirmPassword").val().trim();
+            $(".err").remove();
+            //validating for name
+            if (name.length == 0) {
+                result = false;
+                $("#name").after("<span class='text-warning err'>Enter Name.</span>");
+            } else if (name.length < 2) {
+                result = false;
+                $("#name").after("<span class='text-warning err'>Enter a Valid Name.</span>");
+            } /*else {
+                for( var v of name)
+                {
+                    //To find ascii value of each character in name
+                    var n = name.charCodeAt(v);
+                    if (n >= 48 && n <= 57) {
+                        result = false;
+                        $("#name").after("<span class='text-danger err'>No.are not allowed</span>");
+                    }
+                }
+            }*/
+            //validating for Phone
+            if (phone.length == 0) {
+                result = false;
+                $("#phone").after("<span class='text-warning err'>Enter Phone number.</span>");
+            } else if (phone.length != 10) {
+                result = false;
+                $("#phone").after("<span class='text-warning err'>Enter a valid Phone number.</span>");
+            }
+            //validating for email
+            if (email.length == 0) {
+                result = false;
+                $("#email").after("<span class='text-warning err'>Enter Email.</span>");
+            } else if (email.length < 12) {
+                result = false;
+                $("#email").after("<span class='text-warning err'>Enter a valid Email.</span>");
+            }
+            //validating for address
+            if (address.length == 0) {
+                result = false;
+                $("#address").after("<span class='text-warning err'>Enter Address.</span>");
+            } else if (address.length < 12) {
+                result = false;
+                $("#address").after("<span class='text-warning err'>Address should be more than 12 charcters.</span>");
+            }
+            //validating for password
+            if (password.length == 0) {
+                result = false;
+                $("#password").after("<span class='text-warning err'>Enter Password.</span>");
+            } else if (password.length < 8) {
+                result = false;
+                $("#password").after("<span class='text-warning err'>Password should be more than 8 charcters.</span>");
+            }
+            //validating for confirmPassword
+            if (confirmPassword.length == 0) {
+                result = false;
+                $("#confirmPassword").after("<span class='text-warning err'>Enter Password.</span>");
+            } else if (confirmPassword != password) {
+                result = false;
+                $("#confirmPassword").after("<span class='text-warning err'>Password doesn't match.</span>");
+            }
+            var highestQualification, yearsOfExperience, skills, photo;
+            highestQualification = $("#highestQualification").val();
+            yearsOfExperience = $("#yearsOfExperience").val().trim();
+            skills = $("#skills").val().trim();
+            photo = $("#photo").val();
+            //validating for highestQualification
+            if (highestQualification.length == 0) {
+                result = false;
+                $("#highestQualification").after("<span class='text-warning err'>Please Select One</span>");
+            }
+            //validating for yearsOfExperience
+            if (yearsOfExperience.length == 0) {
+                result = false;
+                $("#yearsOfExperience").after("<span class='text-warning err'>Enter Years Of Experience</span>");
+            }//validating for Skills
+            if (skills.length == 0) {
+                result = false;
+                $("#skills").after("<span class='text-warning err'>Describe your Skills</span>");
+            } else if (skills.length < 10) {
+                result = false;
+                $("#skills").after("<span class='text-warning err'>Describe your Skills using atleast 10 characters</span>");
+            }
+            //validating for Photo
+            if (photo.length == 0) {
+                result = false;
+                $("#photo").after("<br><span class='text-warning err'>Choose Photo</span>");
+            }
+
+            return result;
+        });
+    });
+</script>
+<style>
+    #Devback{
+        background-image: url('../../content/images/devlogo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<div class="row m-0" id="Devback">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 my-5" style="box-shadow:0px 0px 12px green;background:#c8a0a04f;">
+        <form action="/Home/Sign_Developer" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <br /><br />
+                    <h1 class="text-center">Developer's Sign up</h1>
+                    <hr class="bg-light"/>
+                    <p id="presponse" class=" text-center bg-warning  text-left h4"
+                       style="min-height:40px;width:100%;display:none;">@ViewBag.msg</p>
+                </div>
+
+            </div>
+            <!--1st row-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="name" name="Name" placeholder="Enter Name" />
+                </div>
+                <div class="col-sm-6">
+                    <span class="form-control ">
+                        Gender
+                        <input type="radio" checked value="Male" name="Gender" />Male
+                        <input type="radio" value="Female" name="Gender" />Female
+                    </span>
+                </div>
+            </div>
+            <!--2nd row-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <select class="form-control" id="highestQualification" name="Highest_Qualification">
+                        <option value="">Select highest Qualification</option>
+                        <option>BCA</option>
+                        <option>MCA</option>
+                        <option>BSC</option>
+                        <option>B.Tech</option>
+                        <option>M.Tech</option>
+                        <option>CSC</option>
+                        <option>Diploma</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="yearsOfExperience" name="Experience_Year">
+                        <option value="">Select Years Of Experience</option>
+                        @{
+                            for (int i = 0; i < 15; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <!--3rd-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" id="phone" name="Phone" placeholder="Phone">
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" type="email" id="email" name="Email" placeholder="EmailId" />
+                </div>
+            </div>
+            <!--4-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <textarea class="form-control" name="Skills" id="skills" placeholder="Describe Your Skills like HTML,CSS,Java and so on"
+                              style="resize:none;height:70px;"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-control" style="min-height:70px;">
+                        Upload Your Photo
+                        <input type="file" id="photo" name="Photo" />
+                    </div>
+                </div>
+            </div>
+            <!--5-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <textarea style="resize:none;height:90px;" id="address" placeholder="Enter Your Address" name="Address"
+                              class="form-control"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <input type="password" name="Password" id="password" placeholder="Password"
+                           class="form-control" />
+                    <input type="password" name="ConfirmPassword" id="confirmPassword" placeholder="Confirm Password"
+                           class="form-control" />
+                </div>
+            </div>
+            <!--6-->
+            <div class="row pt-4">
+                <div class="col-sm-6">
+                    <!-- div to show reCAPTCHA -->
+                    <div class="g-recaptcha"
+                         data-sitekey="@Convert.ToString(ViewBag.PublicSecret)">
+                    </div>
+                </div>
+            </div>
+
+            <!--7-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="checkbox" id="check" class="form-check-label mr-2" />
+                    <span style="color:#000000">
+                        Agree <a href="#" class="text-decoration-none text-primary">Terms and Conditons</a> of Techwork
+                    </span>
+                </div>
+            </div>
+            <!--8-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="submit" id="register" class="btn btn-success mb-2 btn-block form-control" value="Register Now" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="reset" name="Reset" class="btn mb-5 btn-warning btn-block form-control" />
+                </div>
+            </div>
+
+
+        </form>
+
+
+    </div>
+    <div class="col-sm-2"></div>
+
+</div>

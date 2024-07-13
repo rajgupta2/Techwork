@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "SearchProjects";
+    Layout = "~/Views/Shared/Developercommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<PostedProject>
+
+<div class="row mr-0">
+    <div class="col-sm-12 pr-0" style="min-height:610px;">
+        <p id="presponse" class="bg-warning text-left h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+        <form actions="/Developer/SearchProject" method="post" align="right">
+            <input type="text" name="searchedString" class="form-control-sm" />
+            <button class="btn btn-sm btn-success mb-1 mr-2" type="submit"> Search Project</button>
+        </form>
+
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Posted On</th>
+                    <th>Posted By</th>
+                    <th>Project Title</th>
+                    <th>Description</th>
+                    <th>Maximum Cost</th>
+                    <th>Deadline</th>
+                    <th>Attachment</th>
+                    <th>Request</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (PostedProject d in Model)
+                    {
+                        <tr>
+                            <td>@d.Posted_On</td>
+                            <td>@d.PostedBy</td>
+                            <td>@d.ProjectTitle</td>
+                            <td class="text-justify">@d.DescriptionOfProject</td>
+                            <td>@d.MaximumCost</td>
+                            <td>@d.Deadline</td>
+                            <td><a class="text-decoration-none" href="~/Content/PostedProject/@d.Attachment" target="_blank" download="@d.Attachment">Download</a> </td>
+                            <td><a class="text-decoration-none" href="/Developer/RequestForProjects?pid=@d.ProjectId">Request for Project</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

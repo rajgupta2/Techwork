@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "SearchDeveloper";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<Developer>
+<div class="row mr-0 ">
+    <div class="col-sm-12 pr-0">
+        <form actions="/Client/SearchDeveloper" method="post" align="right">
+            <input type="text" name="searchedString" class="form-control-sm" />
+            <button class="btn btn-sm btn-success mb-1 mr-2" type="submit"> Search Developer</button>
+        </form>
+
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Heighest Qualification</th>
+                    <th>Skills</th>
+                    <th>Photo</th>
+                    <th>Experience Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (Developer d in Model)
+                    {
+                        <tr>
+                            <td>@d.Name</td>
+                            <td>@d.Email</td>
+                            <td>@d.Phone</td>
+                            <td>@d.Highest_Qualification</td>
+                            <td>@d.Skills</td>
+                            <td><img src="/Content/DeveloperPics/@d.Photo" width="90px" height="70px" /></td>
+                            <td>@d.Experience_Year</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

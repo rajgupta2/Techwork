@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Developer_Page";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+}
+<style>
+    #back{
+        background: #393d4e;
+    }
+
+    #dpage1 {
+        background: #29292b;
+    }
+
+    #myimg {
+        background-image: linear-gradient(#f4cb72,#ffffff,#bce8d8)
+    }
+
+    .row {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+</style>
+<div id="back">
+    @*First row*@
+    <div class="row p-5 mr-0" id="dpage1">
+        <div class="col-sm-12" align="center">
+            <img src="~/Content/images/user.png" style="max-height:140px;border-radius:50%;background:#604a78" />
+            <h1>Raj Gupta</h1>
+            <h5 class="text-white">Full Stack Developer</h5>
+        </div>
+    </div>
+    @*Second row*@
+    <div class="row pt-5 mr-0">
+        <div class="col-sm-5">
+            <img src="~/Content/images/user.png" alt="My PHOTO" id="myimg" style="max-height:380px;max-width:330px;" />
+        </div>
+        <div class="col-sm-7">
+            <h5 style="color:#cf5858;">Discover</h5>
+            <h1 class="text-white">About Me</h1>
+            <p class="text-secondary h6" style="line-height:1.7">
+                My name is Raj Gupta, a full stack developer,designer and also a programmer.
+                Currently Study from MGCGV Chitrakoot,Satna,M.P.
+            </p>
+            <div class="row px-2 py-3 my-4 border">
+                <div class="col-sm-6 text-white">
+                    Name: <span class="text-secondary">Raj Gupta</span><br />
+                    Phone:<a href="tel:+91-0123456780" class="text-decoration-none text-secondary">+91-0123456780</a><br />
+                    Email:<a href="mailto:rajgupta.ckt22@gmail.com" class="text-decoration-none text-secondary pl-2">gupta@gmail.com</a><br />
+
+                </div>
+                <div class="col-sm-6 text-white">
+                    Age:<span class="text-secondary"> 20</span><br />
+                    Address:<span class="text-secondary"> Near Of PNB Bank,Chitrakoot,UP</span><br />
+                    Freelance:<span class="text-secondary">Available</span><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*qualification/Education*@
+    <div class="row py-5 mr-0">
+        <div class="col-sm-6">
+            <h5 style="color:#cf5858;">Qualification</h5>
+            <h1 class="text-white">My Education</h1>
+            <div class="border-left pl-3">
+                <h5 style="color:#cf5858;">2021-2025</h5>
+                <h3 class="text-white">B.Tech(IT)</h3>
+                <p class="text-secondary">I have been completing my graduation from MGCGV,Chitrakoot,Satna,MP</p>
+                <h5 style="color:#cf5858;">2020-2021</h5>
+                <h3 class="text-white">Intermediate</h3>
+                <p class="text-secondary">I have completed intermediate  from UP Board.</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h5 style="color:#cf5858;">Export</h5>
+            <h1 class="text-white">My Skills</h1>
+            <div class="pt-3 text-white">
+                HTML
+                <div class="progress" style="width:90%">
+                    <div class="progress-bar" style="width:99.99%;"></div>
+                </div>
+                CSS/Bootstrap
+                <div class="progress" style="width:90%">
+                    <div class="progress-bar" style="width:99%"></div>
+                </div>
+                JS/jQuery
+                <div class="progress" style="width:90%">
+                    <div class="progress-bar" style="width:99%"></div>
+                </div>
+                C/C++
+                <div class="progress" style="width:90%">
+                    <div class="progress-bar" style="width:99%"></div>
+                </div>
+                C#,MySQL
+                <div class="progress" style="width:90%">
+                    <div class="progress-bar" style="width:99%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Acadamic Projects*@
+    <div class="row mr-0 py-5">
+        <div class="col-sm-6">
+            <h5 style="color:#cf5858;">Acadamic Projects</h5>
+            <h1 class="text-white">Project -</h1>
+            <div class="border-left pl-3">
+                <h5 style="color:#cf5858;">2022-2023</h5>
+                <h5 class="text-white">
+                    Title:<span class="text-secondary">
+                        Techwork Freelance
+                    </span>
+                </h5>
+                <h5 class="text-white">
+                    Used Technology:<span class="text-secondary">
+                        ASP .NET MVC
+                    </span>
+                </h5>
+                <h5 class="text-white">
+                    OS:<span class="text-secondary">
+                        Windows 11
+                    </span>
+                </h5>
+                <h5 class="text-white">
+                    Duration:<span class="text-secondary">
+                        2 Months
+                    </span>
+                </h5>
+            </div>
+        </div>
+        <div class="col-sm-6 pt-4">
+            <h1 class="text-white">Languages -</h1>
+            <h5 class="text-white pl-3">Hindi<br />English</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "PostAWork";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $("#postAProject").click(function () {
+            var title = $("#title").val().trim();
+            var payment = $("#payment").val().trim();
+            var deadline = $("#deadline").val().trim();
+            var description = $("#description").val().trim();
+            var attachment = $("#attachment").val().trim();
+            $('.err').remove();
+            var result = true;
+            if (title.length == 0) {
+                result = false;
+                $("#title").after("<span class='err'>Enter Title of project.</span>");
+            }
+            if (payment.length == 0) {
+                result = false;
+                $("#payment").after("<span class='err'>Enter Maximum cost you can pay.</span>");
+            }
+            if (deadline.length == 0) {
+                result = false;
+                $(".deadline").after("<span class='err'>Enter deadline of project complete.</span>");
+            }
+            if (description.length == 0) {
+                result = false;
+                $("#description").after("<span class='err'>Describe your project briefly.</span>");
+            }
+            if (attachment.length == 0) {
+                result = false;
+                $("#attachment").after("<span class='err'>Enter Attachment.</span>")
+            }
+            $('.err').addClass("text-danger");
+
+            return result;
+        });
+        $(".custom-file-input").change(function () {
+            var filename = $(this).val().split("\\").pop();
+            $(".custom-file-label").html(filename);
+        });
+    });
+</script>
+<style>
+    .post {
+        background-image: linear-gradient(165deg,#ef4444,#67d4ec,#aaab27);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="row mr-0 py-5 post">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="box-shadow:0px 0px 15px green;">
+        <form action="/client/PostAWork" method="post" enctype="multipart/form-data">
+            <h2 class="text-light text-center">Post a Project</h2><br />
+            <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.msg</p>
+            <input class="form-control" placeholder="Title of the Project/Work" id="title" name="ProjectTitle" />
+            <br />
+            <input type="number" class="form-control" placeholder="Maximum cost you can pay." id="payment" name="MaximumCost" /><br />
+            <div class="form-control deadline">
+                <label for="deadline">Deadline:</label>
+                <input type="date" id="deadline" class=" border-0" name="Deadline" />
+            </div><br />
+            <textarea class="form-control" style="resize:none;" rows="4" id="description" placeholder="Describe the Project." name="DescriptionOfProject"></textarea><br />
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="attachment" name="Attachment" />
+                <label for="attachment" class="custom-file-label">Attachment: </label>
+            </div><br /><br />
+            <button class="btn btn-success mb-2" id="postAProject" type="submit">Post My Project</button><br />
+        </form>
+    </div>
+ <div class="col-sm-4"></div>
+</div>
+
+
+

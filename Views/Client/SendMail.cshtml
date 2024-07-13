@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "SendMail";
+    Layout = "~/Views/Shared/clientCommon.cshtml";
+}
+<style>
+    .hi{
+        background-image: linear-gradient(125deg,#da3838,#ddff20,#7b35b3);
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    .for{
+     background:#505050;
+     box-shadow:4px 4px 12px blue;
+    }
+</style>
+<div class="row mr-0 py-5 hi" style="min-height:610px;">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 my-5 py-5 for">
+        <form action="/Client/SendMail" method="post">
+            <h2 class="text-center text-primary mb-3 ">Compose an Email</h2>
+            <p id="presponse" class="bg-warning text-center h4 " style="min-height:40px; width:100%;display:none;">@ViewBag.Message</p>
+            <input type="email" placeholder="Send To" name="SendTo" class="form-control" /><br />
+            <input type="text" placeholder="Subject Of Email" name="Subject" class="form-control" /><br />
+            <textarea placeholder="Type your message here..." name="Message" class="form-control" style="resize:none;"></textarea><br />
+            <button class="btn btn-success w-50" type="submit">Send Email</button>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+

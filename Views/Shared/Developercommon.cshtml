@@ -1,0 +1,162 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Developercommon</title>
+    <link href="~/Content/CSS/bootstrap-grid.min.css" rel="stylesheet" />
+    <script src="~/Content/JS/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/JS/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/JS/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/images/mylogo2.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        .navbar-nav, .navbar {
+            position: sticky;
+            top: 0%;
+            left:26%;
+            right: 0%;
+            z-index: 1;
+        }
+
+        .nav-item > a:hover, footer .row div a:hover {
+            opacity: 0.4;
+        }
+
+        .nav-item > a {
+            color: #ff3800;
+            text-decoration: none;
+        }
+
+        #backtotop {
+            position: fixed;
+            right: 20px;
+            bottom: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .custom-file-label{
+            z-index:0;
+        }
+        @@media screen and (max-width:550px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            .btn {
+                padding: .15rem .5rem;
+                font-size: .875rem;
+                line-height: 1.5;
+                border-radius: 2rem;
+            }
+            .photoName{
+                display:none;
+            }
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var x = $("#presponse").text().trim();
+            if (x.length > 0)
+                $("#presponse").fadeIn(3500).delay(3500).fadeOut(1500);
+            ///////
+            $("#backtotop").click(function () {
+                $("html,body").animate({ scrollTop: 0 }, '1500');
+            });
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 20) {
+                    $("#backtotop").show();
+                    $("nav").addClass("bg-dark");
+                    $(".nav-item>a").addClass("text-primary");
+                } else {
+                    $("#backtotop").hide();
+                    $("nav").removeClass("bg-dark");
+                    $(".nav-item>a").removeClass("text-primary");
+
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!--back to top btn-->
+    <a id="backtotop" class="bg-primary btn" style="display:none;"><i class="bi bi-arrow-up"></i></a>
+    <!--Menu/Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light py-0">
+        <!--logo-->
+        <a class="navbar-brand px-2" href="/">
+            <img src="~/Content/images/mylogo2.png" style="max-height:90px;" />
+            <span style="font-size:20px;font-weight:bolder" class="text-success"> Techwork</span>
+        </a>
+        <!--Toggler icon for mobile screen-->
+        <button class="navbar-toggler pt-0" type="button" data-toggle="collapse" id="togglericon" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse m-0" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/Welcome"><i class="bi bi-house-door pr-1"></i>DashBoard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/SearchProjects"><i class="bi bi-search pr-2"></i>Search Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/MyProjects"><i class="bi bi-bag pr-2"></i>My Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/UploadProject">
+                        <i class="bi bi-box-arrow-up pr-2"></i>Upload PROJECTS
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/EnquiryManagement"><i class="bi bi-question-circle pr-2"></i>Enquiry Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="pl-3" href="/Developer/ViewFeedback">
+                        <i class="bi bi-eye pr-2"></i>View Feedback
+                    </a>
+                </li>
+                <li class="nav-item dropdown m-0">
+                    <a class=" dropdown-toggle px-3" data-toggle="dropdown"
+                       href="#"
+                       role="button" aria-expanded="false"><i class="bi bi-gear-fill pr-2"></i>Settings</a>
+                    <div class="dropdown-menu m-0">
+                        <a class="dropdown-item" href="/Developer/MyProfile"><i class="bi bi-house pr-2"></i>My Profile</a>
+                        <a class="dropdown-item" href="/Developer/ChangePassword"><i class="bi bi-key pr-2"></i>Change Password</a>
+                        <a class="dropdown-item" href="/Developer/LogOut"><i class="bi bi-box-arrow-in-right pr-2"></i>Log-out</a>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item photoName ">
+            <img src="~/Content/DeveloperPics/@ViewBag.Pic" style="width:70px;height:60px;border-radius:50%;" /><br />
+            <span class="h5 text-primary">@ViewBag.Name</span>
+        </div>
+    </nav>
+    <!--navbar ending-->
+    <!--Main-->
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <div class=" row pl-4 mr-0" style="background-color: rgba(0, 0, 0, 0.05);">
+            <div class="col-sm-8">
+                © 2021 Copyright:All rights are reserved by
+                <a href="/Home">TechWork.com</a>
+            </div>
+            <div class="col-sm-4">
+                Developed By<a href="/Home">TechWork</a> Team
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

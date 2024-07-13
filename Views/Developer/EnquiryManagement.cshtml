@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "EnquiryManagement";
+    Layout = "~/Views/Shared/Developercommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<Enquiry>
+<style>
+    .enqman {
+        background-image: linear-gradient(165deg,#ef4444,#67d4ec,#aaab27);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="row mr-0" style="min-height:610px;">
+    <div class="col-sm-12 p-0">
+        <h1 class="text-center text-success">Enquiries</h1>
+        <table class="table table-hover  table-bordered text-center">
+            <thead>
+                <tr class="text-dark table-primary">
+                    <th>Asking Date</th>
+                    <th>Asked By</th>
+                    <th>Enquiry ID</th>
+                    <th>Phone</th>
+                    <th>Query</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (Enquiry e in Model)
+                    {
+                        <tr>
+                            <td>@e.EnquiryDate</td>
+                            <td>@e.Name</td>
+                            <td>@e.Email</td>
+                            <td>@e.Phone</td>
+                            <td>@e.Query</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

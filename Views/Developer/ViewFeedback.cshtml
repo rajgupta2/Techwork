@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ViewFeedback";
+    Layout = "~/Views/Shared/Developercommon.cshtml";
+}
+@using Techwork.Models
+@model IEnumerable<Feedback>
+    <style>
+        .viewfeed {
+            min-height:610px;
+        }
+    </style>
+<div class="row viewfeed mr-0">
+    <div class="col-sm-12 p-0">
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr class="text-success table-info">
+                    <th>Posted On</th>
+                    <th>Posted By</th>
+                    <th>Posted ID</th>
+                    <th>Title</th>
+                    <th>Feedbacks</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (Feedback fb in Model)
+                    {<tr>
+    <td>@fb.Feedback_DT</td>
+                <td>@fb.Name</td>
+    <td>@fb.UserId</td>
+    <td>@fb.FeedbackTitle</td>
+    <td class="text-justify">@fb.Description</td>
+</tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
